@@ -31,12 +31,7 @@ rol int foreign key (rol) references rol(idrol),
 cedula int foreign key (cedula) references usuario (cedula),
 )
 
-
-
-
-
-
-
+ 
 create table caracteristicas (
 idcaracteristica int primary key not null,
 nombre varchar(30),
@@ -79,6 +74,7 @@ numero_personas int not null,
 recomendacion varchar(500),
 precio float (10),
 usuario int foreign key (usuario) references usuario(cedula),
+
 )
 
 create table servicios_reserva (
@@ -107,10 +103,12 @@ cantidad int
 )
 
 
-create table ventas (
-idventa int primary key not null,
+create table factura (
+idfactura int primary key not null,
 fecha_registro date, 
 total float(10),
 precio float(10),
+reserva int foreign key (reserva) references reserva(id_reserva)
+
 )
 
