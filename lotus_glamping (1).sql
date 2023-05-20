@@ -1,6 +1,6 @@
 Create database [Lotus_glamping]
 go
-use [Lotus Glamping]
+use [Lotus_glamping]
 go
 
 create table rol(
@@ -13,23 +13,6 @@ idpermisos int primary key not null,
 nombre varchar(30)
 )
 
-create table rol_permisos(
-idrol_permisos int primary key not null,
-nombre_operacion varchar(30),
-permiso int foreign key (permiso) references permisos (idpermisos),
-rol int foreign key (rol) references rol(idrol)
-)
-
-
-create table administrador(
-idadministrador int primary key not null,
-nombres varchar (30),
-apellidos varchar (30),
-correo varchar (60),
-pass varchar (20),
-rol_permisos int foreign key (rol_permisos) references rol_permisos(idrol_permisos),
-)
-
 create table usuario(
 cedula int primary key not null,
 nombres varchar (30),
@@ -37,8 +20,19 @@ apellidos varchar (30),
 correo varchar (60),
 pass varchar (20),
 celular varchar (15),
-rol_permisos int foreign key (rol_permisos) references rol_permisos(idrol_permisos),
+tipo nchar,
+
 )
+create table rol_permisos(
+idrol_permisos int primary key not null,
+nombre_operacion varchar(30),
+permiso int foreign key (permiso) references permisos (idpermisos),
+rol int foreign key (rol) references rol(idrol),
+cedula int foreign key (cedula) references usuario (cedula),
+)
+
+
+
 
 
 
@@ -119,5 +113,4 @@ fecha_registro date,
 total float(10),
 precio float(10),
 )
-
 
